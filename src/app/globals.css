@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  /* Earth-tone palette — soil, leaf, turmeric, clay */
+  --color-soil-50: #faf7f2;
+  --color-soil-100: #f3ece1;
+  --color-soil-200: #e6d8c3;
+  --color-soil-300: #d4bd9c;
+  --color-soil-400: #bd9c72;
+  --color-soil-500: #a67f52;
+  --color-soil-600: #8c6742;
+  --color-soil-700: #6f5137;
+  --color-soil-800: #4a3626;
+  --color-soil-900: #2c2018;
+  --color-soil-950: #211a12;
+
+  --color-leaf-50: #f2f7f1;
+  --color-leaf-100: #e0ebdd;
+  --color-leaf-300: #a8c4a0;
+  --color-leaf-500: #5c8250;
+  --color-leaf-600: #47673e;
+  --color-leaf-700: #375030;
+  --color-leaf-900: #1f2e1b;
+
+  --color-turmeric-100: #fdf0d5;
+  --color-turmeric-300: #f4cd7a;
+  --color-turmeric-500: #e0a32e;
+  --color-turmeric-600: #c1861c;
+
+  --color-clay-500: #c0603f;
+  --color-clay-600: #a34a2c;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+}
+
+:root {
+  --background: var(--color-soil-50);
+  --foreground: var(--color-soil-900);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Horizontal chip rails scroll without a visible bar */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
