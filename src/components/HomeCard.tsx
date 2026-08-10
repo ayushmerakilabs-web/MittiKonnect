@@ -29,10 +29,16 @@ export default function HomeCard({ home }: { home: Home }) {
           <h3 className="font-display text-[17px] font-semibold leading-snug text-soil-900">
             {home.name}
           </h3>
-          <span className="mt-0.5 flex shrink-0 items-center gap-1 text-sm text-soil-800">
-            <Star className="size-3.5 fill-turmeric-500 text-turmeric-500" />
-            {home.rating}
-          </span>
+          {home.rating ? (
+            <span className="mt-0.5 flex shrink-0 items-center gap-1 text-sm text-soil-800">
+              <Star className="size-3.5 fill-turmeric-500 text-turmeric-500" />
+              {home.rating}
+            </span>
+          ) : (
+            <span className="mt-0.5 shrink-0 text-sm font-medium text-leaf-700">
+              New
+            </span>
+          )}
         </div>
         <p className="mt-1 text-sm text-soil-600">
           {home.village}, {home.district} · {home.state}

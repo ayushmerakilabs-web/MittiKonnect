@@ -105,15 +105,19 @@ export default async function HomeDetailPage({
           {home.name}
         </h1>
         <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-soil-600">
-          <span className="flex items-center gap-1.5 font-medium text-soil-800">
-            <Star className="size-4 fill-turmeric-500 text-turmeric-500" />
-            {home.rating}
-            {home.reviews && (
-              <span className="font-normal text-soil-500">
-                ({home.reviews} reviews)
-              </span>
-            )}
-          </span>
+          {home.rating ? (
+            <span className="flex items-center gap-1.5 font-medium text-soil-800">
+              <Star className="size-4 fill-turmeric-500 text-turmeric-500" />
+              {home.rating}
+              {home.reviews && (
+                <span className="font-normal text-soil-500">
+                  ({home.reviews} reviews)
+                </span>
+              )}
+            </span>
+          ) : (
+            <span className="font-medium text-leaf-700">New listing</span>
+          )}
           <span className="flex items-center gap-1.5">
             <MapPin className="size-4" />
             {home.village}, {home.district} · {home.state}
@@ -228,6 +232,79 @@ export default async function HomeDetailPage({
               </a>
             )}
           </section>
+
+          {/* Where you'll sleep — each accommodation type kept separate */}
+          {home.stayTypes && (
+            <section className="border-t border-soil-200 py-8">
+              <h2 className="font-display text-2xl font-semibold text-soil-900">
+                Where you&apos;ll sleep
+              </h2>
+              <p className="mt-2 text-sm text-soil-600">
+                {home.stayTypes.length} kinds of stay on the same land. Pick one,
+                or ask the host which suits your group.
+              </p>
+              <div className="mt-6 space-y-6">
+                {home.stayTypes.map((s) => (
+                  <article
+                    key={s.name}
+                    className="overflow-hidden rounded-card border border-soil-200 bg-white sm:flex"
+                  >
+                    <div className="shrink-0 sm:w-72">
+                      <div className="relative aspect-[4/3]">
+                        <Image
+                          src={s.images[0]}
+                          alt={`${s.name} at ${home.name}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 18rem"
+                          className="object-cover"
+                        />
+                      </div>
+                      {s.images.length > 1 && (
+                        <div className="grid grid-cols-2 gap-1 bg-white pt-1">
+                          {s.images.slice(1, 3).map((src, i) => (
+                            <div key={src} className="relative aspect-[3/2]">
+                              <Image
+                                src={src}
+                                alt={`${s.name} — photo ${i + 2}`}
+                                fill
+                                sizes="(max-width: 640px) 50vw, 9rem"
+                                className="object-cover"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-5 sm:p-6">
+                      <h3 className="font-display text-lg font-semibold text-soil-900">
+                        {s.name}
+                      </h3>
+                      {s.sleeps && (
+                        <p className="mt-1.5 flex items-center gap-2 text-sm text-soil-600">
+                          <BedDouble className="size-4 shrink-0 text-leaf-600" />
+                          {s.sleeps}
+                        </p>
+                      )}
+                      <p className="mt-3 text-sm leading-relaxed text-soil-700">
+                        {s.blurb}
+                      </p>
+                      <ul className="mt-4 grid gap-2.5">
+                        {s.highlights.map((h) => (
+                          <li
+                            key={h}
+                            className="flex items-start gap-2.5 text-sm text-soil-700"
+                          >
+                            <Check className="mt-0.5 size-4 shrink-0 text-leaf-600" />
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Activities */}
           <section className="border-t border-soil-200 py-8">
@@ -407,10 +484,12 @@ export default async function HomeDetailPage({
                   </>
                 )}
               </p>
-              <span className="flex items-center gap-1 text-sm text-soil-800">
-                <Star className="size-4 fill-turmeric-500 text-turmeric-500" />
-                {home.rating}
-              </span>
+              {home.rating && (
+                <span className="flex items-center gap-1 text-sm text-soil-800">
+                  <Star className="size-4 fill-turmeric-500 text-turmeric-500" />
+                  {home.rating}
+                </span>
+              )}
             </div>
 
             <div className="mt-5 overflow-hidden rounded-2xl border border-soil-200">

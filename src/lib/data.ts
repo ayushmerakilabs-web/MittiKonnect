@@ -265,6 +265,18 @@ export type Package = {
   popular?: boolean;
 };
 
+/** A distinct kind of accommodation inside one property — shown as its own
+ *  block on the detail page so a bungalow doesn't get mixed in with rooms. */
+export type StayType = {
+  name: string;
+  /** First image leads the block; the next two render as thumbnails beneath it. */
+  images: string[];
+  blurb: string;
+  /** Free text so a host can say "sleeps 2, extra mattress on request". */
+  sleeps?: string;
+  highlights: string[];
+};
+
 export type Home = {
   slug: string;
   name: string;
@@ -273,12 +285,15 @@ export type Home = {
   state: string;
   host: string;
   hostAvatar: string;
-  rating: number;
+  /** Omitted on brand-new listings — renders as "New" rather than a made-up score. */
+  rating?: number;
   price: number | null;
   tags: string[];
   /** First image is the cover and the large frame in the gallery. */
   images: string[];
   story: string[];
+  /** Separate accommodation blocks within the property, each with its own photo. */
+  stayTypes?: StayType[];
   doHere: string[];
   included: string[];
   packages: Package[];
@@ -502,6 +517,103 @@ export const homes: Home[] = [
           "Complimentary Jawhar bus stand pickup and drop",
         ],
         popular: true,
+      },
+    ],
+  },
+  {
+    slug: "shivar-agro-tourism",
+    name: "Shivar Agro Tourism",
+    // TODO: confirm the village and district with the host before going live.
+    village: "Shivar",
+    district: "Ratnagiri",
+    state: "Maharashtra",
+    host: "The Shivar family",
+    hostAvatar: img("photo-1507003211169-0a1dd7228f2d", 200),
+    price: null, // rate on request — no published figure yet
+    tags: ["Organic", "Family friendly", "Food included"],
+    images: [
+      "/shivar_agro_tourism1.jpg",
+      "/shivar_agro_tourism2.jpg",
+      "/shivar_agro_toursim3.jpg", // filename typo is the host's — kept as uploaded
+      "/shivar_agro_tourism4.jpg",
+    ],
+    story: [
+      "Mud walls that stay cool through the worst of the afternoon, reclaimed teak that turns orange under a single bulb, and a moss-green plaster you will want to put your hand on before you have even unpacked. Shivar Agro Tourism was built out of the farm it stands on — earth from the plot, timber salvaged from old village houses, bamboo cut a short walk away.",
+      "Nothing here is a theme. The mango trees framed in the bedroom window are the same ones shading the courtyard at lunch, the kitchen cooks whatever the land handed over that morning, and the loudest thing after dark is the tree line. Come for a night and you will spend most of it outside.",
+    ],
+    stayTypes: [
+      {
+        name: "The Mud Cottages",
+        images: ["/shivar_agro_tourism2.jpg"],
+        blurb:
+          "Hand-plastered earth rooms with reclaimed-wood walls and warm, low light. Cool at noon without a compressor running, and quiet enough at night to hear the orchard.",
+        sleeps: "2 guests, extra mattress on request",
+        highlights: [
+          "Hand-plastered mud and moss-green lime walls",
+          "Reclaimed teak panelling with bamboo detailing",
+          "Double bed, ceiling fan and a tea and kettle tray",
+          "Ensuite bath with a stone basin and hot water",
+        ],
+      },
+      {
+        name: "The Bungalow",
+        images: [
+          "/shivar_agro_Bungalow.jpg",
+          "/shivar_agor_bunglow.jpg", // filename typo is the host's — kept as uploaded
+          "/shivar_agro_bunglow.jpg",
+        ],
+        blurb:
+          "The old Mangalore-tiled house at the centre of the farm, with a deep shaded verandah and its own strip of garden. Inside it is all high whitewashed beams, a teak jhula hanging in the middle of the hall, and diwans along the windows for the hours between meals. Booked whole — best for a family or one group travelling together.",
+        sleeps: "A whole-house booking for a family or group",
+        highlights: [
+          "Traditional Mangalore-tiled roof and full-length verandah",
+          "Big hall with a teak swing, diwan seating and a rocking chair",
+          "Wood-panelled bedrooms with attached bathrooms",
+          "Private garden and sit-out under the mango trees",
+          "Booked as a whole house, never shared with another party",
+        ],
+      },
+    ],
+    doHere: [
+      "Sunrise walk through the orchard",
+      "Mango picking in season",
+      "Mud-plaster and bamboo craft demo",
+      "Bonfire and star-watching",
+      "Bullock cart round the plot",
+      "Village cycle ride",
+    ],
+    included: [
+      "Home-cooked meals",
+      "Hot water",
+      "Free parking",
+      "Power backup",
+      "Bonfire pit",
+      "Wi-Fi",
+    ],
+    packages: [
+      {
+        name: "A Night in the Mud Cottage",
+        nights: 1,
+        price: null,
+        blurb: "The short one. Arrive for lunch, leave after a slow breakfast.",
+        includes: [
+          "1 night in a mud cottage for 2 guests",
+          "Lunch, evening tea, dinner and breakfast",
+          "Orchard walk and bonfire",
+        ],
+        popular: true,
+      },
+      {
+        name: "Whole Bungalow Weekend",
+        nights: 2,
+        price: null,
+        blurb:
+          "The full house for one group — verandah, garden and courtyard included.",
+        includes: [
+          "2 nights, the bungalow to yourselves",
+          "All meals, cooked from the farm",
+          "Bullock cart ride and craft demo",
+        ],
       },
     ],
   },
