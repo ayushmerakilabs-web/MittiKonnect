@@ -52,10 +52,10 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3.5">
-              {/* On this dark plate the roundel sits on its own light chip —
-                  the full lockup's white background can't be blended away. */}
-              <span className="grid size-14 shrink-0 place-items-center rounded-full bg-soil-50">
-                <Logo variant="emblem" height={34} />
+              {/* On this dark plate the mark sits on its own light chip —
+                  the lockup's white background can't be blended away. */}
+              <span className="grid shrink-0 place-items-center rounded-2xl bg-soil-50 px-3 py-2.5">
+                <Logo variant="emblem" height={28} />
               </span>
               <span className="leading-tight">
                 <span className="block font-display text-xl font-semibold tracking-tight text-white">

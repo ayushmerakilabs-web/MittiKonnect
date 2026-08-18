@@ -98,6 +98,9 @@ export default async function HomeDetailPage({
             width={800}
             height={440}
             priority
+            // The optimizer refuses SVG unless dangerouslyAllowSVG is on
+            // globally; these are our own marks, so serve them as-is instead.
+            unoptimized={home.logo.endsWith(".svg")}
             className="mb-5 h-16 w-auto object-contain object-left mix-blend-multiply sm:h-20"
           />
         )}
@@ -302,6 +305,40 @@ export default async function HomeDetailPage({
                     </div>
                   </article>
                 ))}
+              </div>
+            </section>
+          )}
+
+          {/* Group, corporate and celebration bookings */}
+          {home.groupEvents && (
+            <section className="border-t border-soil-200 py-8">
+              <h2 className="font-display text-2xl font-semibold text-soil-900">
+                Group &amp; event bookings
+              </h2>
+              <p className="mt-2 text-sm text-soil-600">
+                {home.groupEvents.blurb}
+              </p>
+              <div className="mt-6 overflow-hidden rounded-card border border-soil-200 bg-white">
+                <div className="relative aspect-[16/9] sm:aspect-[21/9]">
+                  <Image
+                    src={home.groupEvents.image}
+                    alt={`Event setup at ${home.name}`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 44rem"
+                    className="object-cover"
+                  />
+                </div>
+                <ul className="grid gap-3 p-5 sm:grid-cols-2 sm:p-6">
+                  {home.groupEvents.items.map((it) => (
+                    <li
+                      key={it}
+                      className="flex items-start gap-2.5 text-sm text-soil-700"
+                    >
+                      <Check className="mt-0.5 size-4 shrink-0 text-leaf-600" />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </section>
           )}
@@ -609,7 +646,10 @@ export default async function HomeDetailPage({
                     </span>
                     <span className="text-sm text-soil-500">
                       {" "}
-                      · {p.nights} {p.nights === 1 ? "night" : "nights"}
+                      ·{" "}
+                      {p.nights === 0
+                        ? "day visit"
+                        : `${p.nights} ${p.nights === 1 ? "night" : "nights"}`}
                     </span>
                   </>
                 )}

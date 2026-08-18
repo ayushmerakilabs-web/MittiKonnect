@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "MittiKonnect — Discover the Soul of Bharat",
   description:
     "India's premium agro-tourism marketplace. Verified farm stays, honest reviews, and real village experiences.",
-  icons: { icon: "/logo.png", apple: "/logo.png" },
+  icons: { icon: "/mittikonnect-icon.png", apple: "/mittikonnect-icon.png" },
 };
 
 export default function RootLayout({

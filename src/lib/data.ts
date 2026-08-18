@@ -294,6 +294,9 @@ export type Home = {
   story: string[];
   /** Separate accommodation blocks within the property, each with its own photo. */
   stayTypes?: StayType[];
+  /** Group, corporate and celebration bookings — a different enquiry from a
+   *  room night, so it gets its own block rather than a line in the amenities. */
+  groupEvents?: { image: string; blurb: string; items: string[] };
   doHere: string[];
   included: string[];
   packages: Package[];
@@ -613,6 +616,155 @@ export const homes: Home[] = [
           "2 nights, the bungalow to yourselves",
           "All meals, cooked from the farm",
           "Bullock cart ride and craft demo",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "krushipandhari-agritourism",
+    name: "Krushipandhari Agritourism & Farmstay",
+    village: "Mandki Palvan",
+    district: "Ratnagiri",
+    state: "Maharashtra",
+    host: "The Krushipandhari family",
+    hostAvatar: img("photo-1507003211169-0a1dd7228f2d", 200),
+    price: 3800, // the 1 Day Package rate for a couple
+    tags: ["Organic", "Family friendly", "Food included"],
+    images: [
+      "/krishi-pandit1.jpeg",
+      "/krisha-pandhari3.jpg",
+      "/krisha-pandhari5.jpg",
+      "/krishi-pandhari2.jpg",
+    ],
+    logo: "/Krushi-Pandhari-Logo-1-1.svg",
+    story: [
+      "Four decades of farming came first. The guest rooms came much later. Krushipandhari spreads across a hundred acres of coconut, mango and cashew at Mandki Palvan, a short drive from Chiplun, and it still runs as a working Konkan farm — the tour you take in the morning is simply the day's actual work, with you in the middle of it.",
+      "Brick-and-terracotta cottages stand around a clipped lawn, a long pool catches the whole of the afternoon, and the open-sided pavilion serves Konkani food cooked from what the land gave up that week. In the centre of the garden sits a small stone shrine to Vitthal and Rakhumai — the Pandhari the farm takes its name from, and the reason nobody here is in a hurry.",
+    ],
+    checkIn: "12 noon",
+    checkOut: "10 am",
+    stayTypes: [
+      {
+        name: "Traditional Cottages",
+        images: ["/krishi-pandhari2.jpg"],
+        blurb:
+          "Red-and-white brick under a terracotta tile roof, with a covered porch to sit out on and a bullock cart parked in the sand outside. Rustic on the outside, air-conditioned and properly finished within.",
+        sleeps: "2 adults, extra guest above 10 years at extra cost",
+        highlights: [
+          "AC room with modern amenities",
+          "Covered porch and sit-out",
+          "Konkan brickwork under a terracotta tiled roof",
+          "Steps from the lawn and the dining pavilion",
+        ],
+      },
+      {
+        name: "Poolside Rooms",
+        images: ["/krishi-pandit1.jpeg"],
+        blurb:
+          "The long block facing the water, with full-height glass doors opening straight onto the deck and loungers. Best if you intend to spend more of the stay in the pool than out of it.",
+        sleeps: "2 adults per room",
+        highlights: [
+          "Doors opening directly onto the pool deck",
+          "Sun loungers and shaded seating outside the room",
+          "AC room with modern amenities",
+          "Coconut grove on three sides",
+        ],
+      },
+    ],
+    groupEvents: {
+      image: "/krisha-pandhari6.jpg",
+      blurb:
+        "Perfect for corporate outings, school trips, family events, birthdays and weddings.",
+      items: [
+        "Customized day and stay packages",
+        "Konkan buffet and live counters",
+        "Farm and fun activities",
+        "Event and celebration spaces",
+        "Workshops and group arrangements",
+        "Summer camps and destination weddings",
+      ],
+    },
+    doHere: [
+      "Guided farm tour with the family",
+      "Plough, water and harvest by hand",
+      "Feed the hens and meet the farm animals",
+      "Bird watching on the nature trails",
+      "Evening campfire",
+      "Swimming pool, playground and indoor games",
+    ],
+    included: [
+      "Swimming pool",
+      "Home-cooked meals",
+      "Free parking",
+      "Power backup",
+      "Bonfire pit",
+      "Hot water",
+    ],
+    facilities: [
+      "AC rooms with modern amenities",
+      "Traditional cottages and modern rustic rooms",
+      "Swimming pool with a full sun deck",
+      "Children's playground and indoor games",
+      "Open-air dining pavilion",
+      "Campfire area",
+      "A hundred acres of working coconut, mango and cashew",
+    ],
+    whyUs: [
+      "Over four decades of agricultural heritage",
+      "A working 100-acre farm, not a resort",
+      "Farm-to-table Konkani meals from the farm's own produce",
+      "Set up for school field trips and college groups",
+      "Bird-rich landscape with marked nature trails",
+      "Near Chiplun, in Ratnagiri district",
+    ],
+    notes: [
+      "Check-in 12 noon, check-out 10 am.",
+      "The one day tour runs 9 am to 5 pm. A room is not included.",
+      "On the day tour, children below 6 are free and ages 6 to 12 are charged 500.",
+      "On overnight packages, breakfast and tea are complimentary. Other meals are available at extra cost.",
+      "An extra guest above 10 years is charged 1,000 per person.",
+    ],
+    packages: [
+      {
+        name: "One Day Tour — Nature & Farm Experience",
+        nights: 0,
+        price: 1000,
+        blurb:
+          "Per adult, 9 am to 5 pm. Children 6 to 12 are half, under 6 are free. No room — this one is the farm itself.",
+        includes: [
+          "Breakfast, 9 am to 10 am",
+          "Farm tour and activities, or pool access",
+          "Traditional Konkan veg meal",
+          "Evening snacks with tea or coffee",
+          "Seasonal activities on the land",
+        ],
+      },
+      {
+        name: "1 Day Package",
+        nights: 1,
+        price: 3800,
+        blurb:
+          "For 2 adults. An AC room, the campfire after dark, and the run of the pool.",
+        includes: [
+          "AC room with modern amenities for 2 adults",
+          "Complimentary breakfast and tea",
+          "Evening campfire",
+          "Swimming pool, playground and indoor games",
+        ],
+        popular: true,
+      },
+      {
+        name: "2 Day Package",
+        nights: 2,
+        price: 7600,
+        blurb:
+          "For 2 adults. Long enough to do the guided farm tour properly and still have a morning spare.",
+        includes: [
+          "AC room with modern amenities for 2 adults",
+          "Guided farm tour and seasonal activities",
+          "Evening campfire, cultural night and bird watching",
+          "Swimming pool, playground and indoor games",
+          "Complimentary breakfast and tea",
         ],
       },
     ],
