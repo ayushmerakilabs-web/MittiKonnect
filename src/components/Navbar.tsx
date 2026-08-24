@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Logo from "@/components/Logo";
+import SearchStays from "@/components/SearchStays";
 
 const links = [
   { href: "/explore", label: "Explore" },
@@ -64,14 +65,7 @@ export default function Navbar() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <button
-            type="button"
-            aria-label="Search stays"
-            className="hidden items-center gap-2 rounded-full border border-soil-200 bg-white px-4 py-2.5 text-sm text-soil-500 shadow-sm transition-shadow hover:shadow md:flex"
-          >
-            <Search className="size-4" />
-            Search stays
-          </button>
+          <SearchStays />
           <Link
             href="/login"
             className="hidden rounded-full px-3.5 py-2 text-sm text-soil-700 hover:bg-soil-100 sm:block"
